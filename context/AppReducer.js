@@ -58,7 +58,11 @@ export const AppReducer = (state, action) => {
                 ...state,
                 cartProduct: state.cartProduct.map(product => {
                     if (product.id === action.payload.id) {
-                        return { ...product, quantity: product.quantity > 1 ? product.quantity - 1 : 1, subTotal: product.quantity * product.price };
+                        return {
+                            ...product,
+                            quantity: product.quantity > 1 ? product.quantity - 1 : 1,
+                            subTotal: product.subTotal > product.price ? (product.quantity - 1) * product.price : product.price
+                        };
                     }
                     return product;
                 }),
