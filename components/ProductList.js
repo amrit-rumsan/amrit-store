@@ -13,16 +13,16 @@ export default function ProductList() {
             {state?.product?.map(p => {
                 return (
                     // <Card p={p} key={p.i} />
-                    <div className="bg-[#E2D1F9] rounded-lg relative shadow-2xl" key={p.id}>
-                        {/* <Link href={`/items/${p.id}`}> */}
-                        <img onClick={() => router.push(`/items/${p.id}`)} className="w-60 h-32 rounded-lg hover:scale-105 hover:shadow-lg" src={p.thumbnail} alt={p.title} />
-                        {/* </Link> */}
-                        <p className="bg-[#8AAAE5] rounded-lg text-sm p-1 absolute top-1 left-1">{p.discountPercentage}% off</p>
-                        <div className="p-2">
+                    <div className="bg-[#E2D1F9] rounded-lg relative shadow-2xl overflow-hidden" key={p.id}>
+                        <div className="overflow-hidden">
+                            <img onClick={() => router.push(`/items/${p.id}`)} className="w-60 h-32 rounded-t-lg hover:scale-110 duration-300" src={p.thumbnail} alt={p.title} />
+                        </div>
+                        <p className="font-semibold text-sm p-1 absolute bottom-11 right-2">{p.discountPercentage}% off</p>
+                        <div className="p-2 overflow-hidden">
                             <h1 className="font-bold h-20">{p.title}</h1>
                             <div className="flex justify-between items-center">
                                 <p className="font-bold">${p.price}</p>
-                            <button onClick={() => dispatch({ type: 'ADD_CART', payload: p })} className="bg-[#317773] p-1 rounded-lg active:scale-75">Add to Cart</button>   
+                                <button onClick={() => dispatch({ type: 'ADD_CART', payload: p })} className="bg-[#317773] p-1 rounded-lg active:scale-75">Add to Cart</button>
                             </div>
                         </div>
                     </div>
