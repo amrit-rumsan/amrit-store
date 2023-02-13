@@ -4,7 +4,7 @@ export const initialState = {
     product: [],
     cart: 0,
     cartProduct: [],
-    price: []
+    showModal: false
 };
 
 export const AppReducer = (state, action) => {
@@ -34,12 +34,18 @@ export const AppReducer = (state, action) => {
             }
 
         case 'ADD_CART':
-            return {
-                ...state,
-                ...state.product,
-                cartProduct: state.cartProduct.concat({ ...action.payload, subTotal: action.payload.price, quantity: 1 }),
-                cart: state.cart + 1,
-                price: state.price.concat(action.payload.price)
+            const productIndex = state.cartProduct.findIndex(p => p.id === action.payload.id)
+            if (productIndex === -1) {
+                return {
+                    ...state,
+                    cartProduct: [...state.cartProduct, { ...action.payload, quantity: 1 }],
+                    cart: state.cart + 1,
+                }
+            } else {
+                return {
+                    ...state,
+                    showModal: true
+                }
             }
 
         case 'QUANTITY_INC':
@@ -47,7 +53,11 @@ export const AppReducer = (state, action) => {
                 ...state,
                 cartProduct: state.cartProduct.map(product => {
                     if (product.id === action.payload.id) {
-                        return { ...product, quantity: product.quantity + 1, subTotal: (product.quantity + 1) * product.price };
+                        return {
+                            ...product,
+                            quantity: product.quantity + 1,
+                            subTotal: (product.quantity + 1) * product.price
+                        };
                     }
                     return product;
                 }),
@@ -66,6 +76,12 @@ export const AppReducer = (state, action) => {
                     }
                     return product;
                 }),
+            }
+
+        case 'CLOSE_MODAL':
+            return {
+                ...state,
+                showModal: false
             }
 
         default:
