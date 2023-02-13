@@ -1,3 +1,4 @@
+import Layout from '../components/layout'
 import { ProductContextProvider } from '../context/AppContext'
 import '../styles/globals.css'
 import { GlobalStyle } from '../styles/GlobalStyle'
@@ -7,7 +8,9 @@ function MyApp({ Component, pageProps }) {
     <>
       <GlobalStyle />
       <ProductContextProvider>
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </ProductContextProvider>
 
     </>

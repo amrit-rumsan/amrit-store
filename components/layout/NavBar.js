@@ -23,7 +23,7 @@ export default function NavBar() {
     return (
         <div className="flex justify-between bg-[#8AAAE5] p-5 border-b-2">
             <div className="w-36 flex font-bold">
-                <p className="w-3/6 text-center bg-red-500">amrit</p>
+                <p className="w-3/6 text-center bg-red-600 text-white">amrit</p>
                 <p className="w-3/6 text-center bg-white">store</p>
             </div>
             <div className="">
