@@ -57,7 +57,7 @@ export default function Cart() {
                                 <td className="p-2 text-center">${total}</td>
                             </tr>
                         </tfoot>
-                    </table>) : <div className="fixed top-1/2 left-1/2">Cart is Empty!</div>}
+                    </table>) : <div className="flex justify-center"><div className="font-bold text-xl">Cart is Empty!</div></div>}
 
             </div>
         </>
