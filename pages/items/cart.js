@@ -10,10 +10,6 @@ p-2 bg-orange-500
 export default function Cart() {
     const { state, dispatch } = useGlobalContext();
 
-    // const func = (total, sum) => {
-    //     return total + sum
-    // }
-
     const handleClick = (id) => {
         dispatch({ type: "QUANTITY_INC", payload: id })
     }
@@ -23,7 +19,7 @@ export default function Cart() {
     return (
         <>
             <Link href="/products"><Back /></Link>
-            <div className="h-screen w-full pt-44 px-20">
+            <div className="w-full pt-32 pb-20 px-20">
                 {state.cartProduct.length > 0 ?
                     (<table className="w-full">
                         <thead className="w-full">
