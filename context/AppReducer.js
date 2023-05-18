@@ -48,6 +48,14 @@ export const AppReducer = (state, action) => {
                 }
             }
 
+        case 'DELETE_CART':
+            return {
+                ...state,
+                newCart: [state.cartProduct],
+                deleteProduct: newCart.splice(action.payload.id, 1),
+                cartProduct: [newCart]
+            }
+
         case 'QUANTITY_INC':
             return {
                 ...state,

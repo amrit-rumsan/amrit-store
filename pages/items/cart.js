@@ -2,6 +2,7 @@ import Back from "../../components/common/Back";
 import Link from "next/link";
 import { useGlobalContext } from "../../context/AppContext";
 import tw from "tailwind-styled-components";
+import { AiFillDelete } from "react-icons/ai";
 
 const Th = tw.th`
 p-2 bg-orange-500
@@ -12,6 +13,10 @@ export default function Cart() {
 
     const handleClick = (id) => {
         dispatch({ type: "QUANTITY_INC", payload: id })
+    }
+
+    const handleDelete = (p) => {
+        dispatch({ type: "DELETE_CART", payload: p })
     }
 
     const total = state.cartProduct.reduce((acc, product) => acc + product.price * product.quantity, 0);
@@ -35,12 +40,13 @@ export default function Cart() {
                                 <tr key={p.id}>
                                     <td className="p-2"><div className="flex"><img className="w-16 mr-2" src={p.thumbnail} />{p.title}</div></td>
                                     <td className="p-2">
-                                        <div className="flex justify-center gap-3">
+                                        <div className="flex items-center justify-center gap-3">
                                             <span key={p.id} className="text-xl font-bold"> {p.quantity}</span>
                                             <div>
                                                 <img className="cursor-pointer" onClick={() => handleClick(p)} width={20} src="/images/up.png" />
                                                 <img className="cursor-pointer" onClick={() => dispatch({ type: "QUANTITY_DEC", payload: p })} width={20} src="/images/down.png" />
                                             </div>
+                                            <AiFillDelete className="cursor-pointer" onClick={() => handleDelete(p)} />
                                         </div>
                                     </td>
                                     <td className="text-center">${p.price}</td>
