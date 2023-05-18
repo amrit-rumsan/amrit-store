@@ -21,7 +21,6 @@ export default function ProductCard() {
 								height={500}
 								priority
 							/>
-							{/* <img onClick={() => router.push(`/items/${p.id}`)} className="w-60 h-32 rounded-t-lg hover:scale-110 duration-300" src={p.thumbnail} alt={p.title} /> */}
 						</div>
 						<p className="font-semibold text-sm p-1 absolute bottom-11 right-2">
 							{p.discountPercentage}% off
